@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo "#######################################################################"
+echo " by tu "
+echo "#######################################################################"
+
+# قائمة الأوامر الشائعة
+commands=("ls" "cd" "pwd" "mkdir" "rm" "cp" "mv" "cat" "grep" "chmod" "chown" "chgrp" "ssh" "scp" "wget" "tar" "top" "ps" "kill" "find" "du" "df" "head" "tail" "sort" "wc" "diff" "sed" "awk" "cut" "ln" "file" "history" "alias" "source" "touch" "locate" "man" "info" "apropos" "ifconfig" "ping" "traceroute" "netstat" "route" "iptables" "systemctl" "service" "useradd" "userdel" "usermod" "passwd" "groupadd" "groupdel" "groupmod" "su" "sudo" "visudo" "crontab" "at" "systemctl" "service" "tar" "gzip" "gunzip" "zip" "unzip" "rsync" "mount" "umount" "df" "fdisk" "mkfs" "fsck" "lspci" "lsusb" "lshw" "uname" "date" "cal" "uptime" "who" "w" "last" "reboot" "shutdown" "halt" "poweroff" "ssh-keygen" "ssh-copy-id" "scp" "sftp" "nc" "curl" "dig" "nslookup" "ftp" "telnet" "ncdu" "htop")
+
+# عرض قائمة الأوامر
+echo "الرجاء اختيار رقم الأمر المراد الاستفسار عنه:"
+for ((i=0; i<${#commands[@]}; i++)); do
+    echo "$((i+1)). ${commands[$i]}"
+done
+
+# قراءة الاختيار من المستخدم
+read -p "اختر رقم الأمر: " choice
+
+# التحقق من صحة الاختيار
+if [[ $choice =~ ^[0-9]+$ && $choice -ge 1 && $choice -le ${#commands[@]} ]]; then
+    selected_command=${commands[$((choice-1))]}
+    man $selected_command
+else
+    echo "اختيار غير صالح."
+fi
